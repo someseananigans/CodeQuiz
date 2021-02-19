@@ -130,8 +130,8 @@ const scoring = () => {
 const scoreSpace = () => {
   document.getElementById('mainSpace').innerHTML = `
       <h1 class="display-4 center">Highscores</h1>
-      <div class="center">
-        <ul class="list-group left" id="list">
+      <div class="center topSpace">
+        <ul class="list-group left listSpace" id="list">
       
         </ul>
       </div>
@@ -165,7 +165,9 @@ const scoreBoard = (scorelog) => {
   // format to show list item as --> 1 | 99 | john doe
   highscores.forEach(score => {
     let scoreElem = document.createElement('div')
-    scoreElem.textContent = `${rank} | ${score.highscore} | ${score.name}`
+    scoreElem.textContent = 
+    // "\xa0" + rank + "\xa0\xa0\xa0|\xa0\xa0\xa0" + score.highscore + "\xa0\xa0\xa0|\xa0\xa0\xa0" + score.name
+      `\xa0\xa0${rank}\xa0\xa0|\xa0\xa0${score.highscore}\xa0\xa0|\xa0\xa0${score.name}`
     rank++
     scoreElem.className = 'list-group-item'
     scoreElem.classList.add = 'left'
