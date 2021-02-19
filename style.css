@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  height: 700px;
+}
+
+#mainSpace {
+  margin-top: 100px;
+  padding: 100px;
+  padding-bottom: 10px;
+}
+
+.row {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.bottomSpace {
+  margin-bottom: 1rem;
+}
+
+.topSpace {
+  margin-top: 1rem;
+}
+
+.questions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+hr {
+  margin-top: 2.5rem;
+}
+
+.hscoreboard:hover {
+  color: rgb(0, 140, 255);
+}
