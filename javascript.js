@@ -70,13 +70,13 @@ const shuffle = (array) => {
 // Function to update HTML for .mainSpace div
 const qRender = () => {
 
-  randomq = [`<button class="btn btn-primary answer a1">${qA[i].a1}</button>`, `<button class="btn btn-primary answer a2">${qA[i].a2}</button>`, `<button class="btn btn-primary answer a3">${qA[i].a3}</button>`, `<button class="btn btn-primary answer a4">${qA[i].a4}</button>`]
+  randomq = [`<button class="btn btn-outline-primary btn-lg answer a1">${qA[i].a1}</button>`, `<button class="btn btn-outline-primary btn-lg answer a2">${qA[i].a2}</button>`, `<button class="btn btn-outline-primary btn-lg answer a3">${qA[i].a3}</button>`, `<button class="btn btn-outline-primary btn-lg answer a4">${qA[i].a4}</button>`]
   // randomly organize position of buttons
   randomq = shuffle(randomq)
 
   document.getElementById('mainSpace').innerHTML = `
           <h1 class="display-5 center">${qA[i].q}</h1>
-          <div class="questions">
+          <div class="answers">
             <p>${randomq[0]}</p>
             <p>${randomq[1]}</p>
             <p>${randomq[2]}</p>
@@ -104,8 +104,8 @@ const scoring = () => {
         <div class="center">
           <label class="bottomSpace" for="name">Enter Name:</label>
           <input class="bottomSpace" type="text" id="name" placeholder="John Doe">
-          <button class="btn btn-primary bottomSpace topSpace" id="submit">Submit</button>
-          <button class="btn btn-primary bottomSpace topSpace" id="home">Go Back</button>
+          <button class="btn btn-primary btn-md bottomSpace topSpace" id="submit">Submit</button>
+          <button class="btn btn-primary btn-md bottomSpace topSpace" id="home">Go Back</button>
         </div>
         `
   }
@@ -119,7 +119,7 @@ const scoring = () => {
         <div class="center">
           <label class="bottomSpace" for="name">Enter Name:</label>
           <input class="bottomSpace" type="text" id="name" placeholder="John Doe">
-          <button class="btn btn-primary bottomSpace topSpace" id="submit">Submit</button>
+          <button class="btn btn-primary btn-md bottomSpace topSpace" id="submit">Submit</button>
         </div>
         `
     count = 0
@@ -136,7 +136,7 @@ const scoreSpace = () => {
         </ul>
       </div>
       <div class="center topSpace">
-      <button class="btn btn-primary" id="home">Go Back</button>
+      <button class="btn btn-primary btn-lg" id="home">Go Back</button>
       <div>
       `
 }
@@ -185,7 +185,7 @@ const home = () => {
           Challenge your understanding of Web Development with this 5 question Code Quiz!
         </p>
         <div class="center">
-          <button class="btn btn-primary start">Start</button>
+          <button class="btn btn-primary btn-lg start">Start</button>
         </div>
       `
 }
