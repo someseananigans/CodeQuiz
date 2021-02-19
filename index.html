@@ -61,7 +61,7 @@
           Challenge your understanding of Web Development with this 5 question Code Quiz!
         </p>
         <div class="center">
-          <button class="button" id="start">Start</button>
+          <button class="start">Start</button>
         </div>
       </div>
 
@@ -74,7 +74,7 @@
  
   <script>
     // List of Arrays of Objects
-      const qA = [
+      let qA = [
         {
           'q': 'question 1',
           'a1': 'answer 1',
@@ -121,17 +121,42 @@
       let count = 100
       let score = 0
       let correct = 0
+      let scorelog = ''
+
+      const shuffle = (array) => {
+          let currentIndex = array.length, temporaryValue, randomIndex;
+
+          // While there remain elements to shuffle...
+          while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+
+          return array;
+        }
 
       // Function to update HTML for .mainSpace div
       const qRender = () => {
+
+        randomq = [`<button class="answer a1">${qA[i].a1}</button>`,`<button class="answer a2">${qA[i].a2}</button>`,`<button class="answer a3">${qA[i].a3}</button>`,`<button class="answer a4">${qA[i].a4}</button>`]
+        // randomly organize position of buttons
+        randomq = shuffle(randomq)
+
         document.getElementById('mainSpace').innerHTML = `
-      <h1 class="display-5 center">${qA[i].q}</h1>
-      <p><button class="answer a1">${qA[i].a1}</button></p>
-      <p><button class="answer a2">${qA[i].a2}</button></p>
-      <p><button class="answer a3">${qA[i].a3}</button></p>
-      <p><button class="answer a4">${qA[i].a4}</button></p>
-      <hr>
-      `
+          <h1 class="display-5 center">${qA[i].q}</h1>
+          <p>${randomq[0]}</p>
+          <p>${randomq[1]}</p>
+          <p>${randomq[2]}</p>
+          <p>${randomq[3]}</p>
+          <hr>
+          `
         i++
       }
 
@@ -159,10 +184,11 @@
         <button class="bottomSpace" id="submit">Submit</button>
       </div>
       `
+      count = 0
       }
 
-      // function to populate mainSpace with scoreboard
-      const scoreBoard = () => {
+      // function to populate mainSpace with scoreSpace
+      const scoreSpace = () => {
         document.getElementById('mainSpace').innerHTML = `
       <h1 class="display-4 center">Highscores</h1>
       <div class="center">
@@ -176,6 +202,40 @@
       `
       }
 
+      const scoreBoard = (scorelog) => {
+        // set list or grab list in local storage
+        let highscores = JSON.parse(localStorage.getItem('highscores')) || []
+        
+        // push the array into the existing list
+        highscores.push(scorelog)
+
+        hsToRemove = 'remove' 
+        
+        highscores = highscores.filter((item) => item.name != hsToRemove)
+
+        // update local storage with updated list
+        localStorage.setItem('highscores', JSON.stringify(highscores))
+        // populate mainSpace with scoreSpace
+        scoreSpace()
+
+        // sort the highscores array by highscore
+        highscores.sort((a, b) => (a.highscore > b.highscore) ? -1 : 1)
+        // set highscores to only contain top 5 
+        highscores = highscores.slice(0, 5)
+        let rank = 1
+        // format to show list item as --> 1 | 99 | john doe
+        highscores.forEach(score => {
+          let scoreElem = document.createElement('div')
+          scoreElem.textContent = `${rank} | ${score.highscore} | ${score.name}`
+          rank++
+          scoreElem.className = 'list-group-item'
+          scoreElem.classList.add = 'left'
+          // append to the list space in scoreSpace
+          document.getElementById('list').append(scoreElem)
+        });
+      }
+
+
       // function to populate mainSpace with home/1st page contents
       const home = () => {
         document.getElementById('mainSpace').innerHTML = `
@@ -184,7 +244,7 @@
           Challenge your understanding of Web Development with this 5 question Code Quiz!
         </p>
         <div class="center">
-          <button id="start">Start</button>
+          <button class="start">Start</button>
         </div>
       `
       }
@@ -205,6 +265,7 @@
 
       // Function updates countdown to .timer div on 1 second intervals
       const timer = () => {
+        count = 99
         let countdown = setInterval(() => {
           document.getElementById('time').innerHTML = `<p>Time: ${count}</p>`
           count--
@@ -224,11 +285,6 @@
         }, 1000);
       }
 
-      // When start button is clicked, start initial render and timer
-      document.getElementById('start').addEventListener('click', () => {
-        qRender()
-        timer()
-      })
 
       // When an answer is clicked, check if answer is correct
       // Displays next question/answer
@@ -253,46 +309,39 @@
       // grab user input and add to array with score when "submit" is pressed
       document.addEventListener('click', event => {
         if (event.target.id == 'submit') {
-          // set list or grab list in local storage
-          let highscores = JSON.parse(localStorage.getItem('highscores')) || []
           // formulate array with quiz taker's score and name
-          let scorelog = {
+          scorelog = {
             name: document.getElementById('name').value,
             highscore: score,
           }
-          // push the array into the existing list
-          highscores.push(scorelog)
-
-          // update local storage with updated list
-          localStorage.setItem('highscores', JSON.stringify(highscores))
-          // populate mainSpace with scoreboard
-          scoreBoard()
-
-          // sort the highscores array by highscore
-          highscores.sort((a, b) => (a.highscore > b.highscore) ? -1 : 1)
-          // set highscores to only contain top 5 
-          highscores = highscores.slice(0, 5)
-          let rank = 1
-          // format to show list item as --> 1 | 99 | john doe
-          highscores.forEach(score => {
-            let scoreElem = document.createElement('div')
-            scoreElem.textContent = `${rank} | ${score.highscore} | ${score.name}`
-            rank++
-            scoreElem.className = 'list-group-item'
-            scoreElem.classList.add = 'left'
-            // append to the list space in scoreboard
-            document.getElementById('list').append(scoreElem)
-          });
+          scoreBoard(scorelog)
         }
       })
 
       // for go back button (sends to "1st/Quiz" page)
       document.addEventListener('click', event => {
         if (event.target.id == 'home') {
-          home()
+          home() 
+          i = 0
+          count = 100
+          score = 0
+          correct = 0
+          scorelog = ''
+        }
+        // When start button is clicked, start initial render and timer
+        if (event.target.classList.contains('start')) {
+          qRender()
+          timer()
+        }
+        if (event.target.classList.contains('hscoreboard')) {
+          scorelog = {
+            name: 'remove',
+            highscore: '0'
+          }
+          scoreBoard(scorelog)
         }
       })
-    
+
 
 
 
