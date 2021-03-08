@@ -1,44 +1,44 @@
 // List of Arrays of Objects
 let qA = [
   {
-    'q': 'What does HTML stand for?',
-    'a1': 'Hyperlinks and Text Markup Language',
-    'a2': 'Hyper Text Markup Language',
-    'a3': 'Home Tool Markup Langua',
-    'a4': 'HaPi Mark Language',
-    'a': 'a2'
+    q: 'What does HTML stand for?',
+    a1: 'Hyperlinks and Text Markup Language',
+    a2: 'Hyper Text Markup Language',
+    a3: 'Home Tool Markup Langua',
+    a4: 'HaPi Mark Language',
+    a: 'a2'
   },
   {
-    'q': 'Which is the correct CSS syntax?',
-    'a1': '{body : color = black}',
-    'a2': 'body : color = black',
-    'a3': 'body {color: black}',
-    'a4': '{body; color: black}',
-    'a': 'a3'
+    q: 'Which is the correct CSS syntax?',
+    a1: '{body : color = black}',
+    a2: 'body : color = black',
+    a3: 'body {color: black}',
+    a4: '{body; color: black}',
+    a: 'a3'
   },
   {
-    'q': 'Where in the HTML is the correct place to refer to an external Javascript?',
-    'a1': 'in the script section',
-    'a2': 'at the end of the document',
-    'a3': 'in the head section',
-    'a4': 'in the body section',
-    'a': 'a1'
+    q: 'Where in the HTML is the correct place to refer to an external Javascript?',
+    a1: 'in the script section',
+    a2: 'at the end of the document',
+    a3: 'in the head section',
+    a4: 'in the body section',
+    a: 'a1'
   },
   {
-    'q': 'Which class provides a full width container, spanning the entire width of the viewport?',
-    'a1': '.container',
-    'a2': '.container-flex',
-    'a3': '.container-fixed',
-    'a4': '.container-fluid',
-    'a': 'a4'
+    q: 'Which class provides a full width container, spanning the entire width of the viewport?',
+    a1: '.container',
+    a2: '.container-flex',
+    a3: '.container-fixed',
+    a4: '.container-fluid',
+    a: 'a4'
   },
   {
-    'q': 'Which sign does jQuery use as a shortcut for jQuery?',
-    'a1': 'the % sign',
-    'a2': 'the $ sign',
-    'a3': 'the ? sign',
-    'a4': 'the peace sign',
-    'a': 'a2'
+    q: 'Which sign does jQuery use as a shortcut for jQuery?',
+    a1: 'the % sign',
+    a2: 'the $ sign',
+    a3: 'the ? sign',
+    a4: 'the peace sign',
+    a: 'a2'
   }
 ]
 
